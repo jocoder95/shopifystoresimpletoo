@@ -114,11 +114,11 @@
       "name": "t:names.collection_links",
       "settings": {
         "collection_list": [
-          "vintage-roses",
           "butterfly-meadow",
           "duck-pond",
           "raspberry-garden",
-          "bunnies"
+          "bunnies",
+          "vintage-roses-1"
         ],
         "layout": "spotlight",
         "section_width": "page-width",
