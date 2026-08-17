@@ -68,7 +68,7 @@
               "name": "t:names.details",
               "static": true,
               "settings": {
-                "show_date": true,
+                "show_date": false,
                 "show_author": false,
                 "alignment": "left",
                 "show_alignment": false,
@@ -85,7 +85,7 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
-                "border_radius": 4
+                "border_radius": 0
               },
               "blocks": {}
             }

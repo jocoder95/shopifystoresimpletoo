@@ -53,6 +53,7 @@
           "name": "t:names.featured_image",
           "settings": {
             "image": "{{ article.image }}",
+            "image_ratio": "adapt",
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
