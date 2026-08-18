@@ -6,6 +6,8 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    {{ 'scroll-animation.css' | asset_url | stylesheet_tag }}
+
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
@@ -49,6 +51,8 @@
 
     {{ content_for_header }}
   </head>
+
+  <script src="{{ 'scroll-animation.js' | asset_url }}" defer></script>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}

@@ -10,7 +10,7 @@
 {
   "current": {
     "logo": "shopify://shop_images/logo.png",
-    "page_text_color": "#FACCB8",
+    "page_text_color": "#D00D0D",
     "type_body_font": "comfortaa_n4",
     "type_subheading_font": "zen_maru_gothic_n4",
     "type_heading_font": "zen_kurenaido_n4",
@@ -92,9 +92,9 @@
     "content_for_index": [],
     "color_palette": {
       "background": "#ffffff",
-      "foreground": "#FF6D74",
+      "foreground": "#ff6d74",
       "color1": "#cfe2c7",
-      "color2": "#b837bf"
+      "color2": "#000000"
     }
   },
   "presets": {
@@ -185,5 +185,8 @@
         "color2": "#F2F2F2"
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": []
   }
 }

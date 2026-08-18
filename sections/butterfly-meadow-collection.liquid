@@ -1,7 +1,7 @@
-{{ 'vintage-roses.css' | asset_url | stylesheet_tag }}
+{{ 'butterfly-meadow.css' | asset_url | stylesheet_tag }}
 
 <section
-  class="vintage-roses scroll-animate"
+  class="butterfly-meadow  scroll-animate"
   {% if section.settings.background_image %}
     style="
       background-image:
@@ -15,10 +15,10 @@
 >
 
   <!-- Hero -->
-  <div class="vintage-roses__hero">
+  <div class="butterfly-meadow__hero">
 
     {% if collection.image %}
-      <div class="vintage-roses__hero-image">
+      <div class="butterfly-meadow__hero-image">
         {{
           collection.image
           | image_url: width: 2000
@@ -29,18 +29,18 @@
       </div>
     {% endif %}
 
-    <div class="vintage-roses__hero-content">
+    <div class="butterfly-meadow__hero-content">
 
-      <p class="vintage-roses__eyebrow">
+      <p class="butterfly-meadow__eyebrow">
         COLLECTION
       </p>
 
-      <h1 class="vintage-roses__title">
+      <h1 class="butterfly-meadow__title">
         {{ collection.title }}
       </h1>
 
       {% if collection.description != blank %}
-        <div class="vintage-roses__description">
+        <div class="butterfly-meadow__description">
           {{ collection.description }}
         </div>
       {% endif %}
@@ -51,9 +51,9 @@
 
 
   <!-- Products -->
-  <div class="vintage-roses__products-wrapper">
+  <div class="butterfly-meadow__products-wrapper">
 
-    <div class="vintage-roses__header">
+    <div class="butterfly-meadow__header">
 
       <h2>
         {{ collection.products_count }}
@@ -65,16 +65,16 @@
 
     {% paginate collection.products by 24 %}
 
-      <div class="vintage-roses__grid">
+      <div class="butterfly-meadow__grid">
 
         {% for product in collection.products %}
 
           <a
             href="{{ product.url }}"
-            class="vintage-roses__product"
+            class="butterfly-meadow__product"
           >
 
-            <div class="vintage-roses__product-image">
+            <div class="butterfly-meadow__product-image">
 
               {% if product.featured_image %}
 
@@ -97,7 +97,7 @@
             </div>
 
 
-            <div class="vintage-roses__product-info">
+            <div class="butterfly-meadow__product-info">
 
               <h3>
                 {{ product.title }}
@@ -118,7 +118,7 @@
 
       {% if paginate.pages > 1 %}
 
-        <nav class="vintage-roses__pagination">
+        <nav class="butterfly-meadow__pagination">
 
           {% if paginate.previous %}
             <a href="{{ paginate.previous.url }}">
@@ -150,7 +150,7 @@
 
 {% schema %}
 {
-  "name": "Vintage Roses Collection",
+  "name": "Butterfly Med Collection",
 
   "settings": [
     {

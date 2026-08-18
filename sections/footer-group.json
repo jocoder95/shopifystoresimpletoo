@@ -59,6 +59,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.editorial_jumbo_text",
       "settings": {
         "media_position": "right",
@@ -112,7 +113,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
-                "text_color": "#EA0D0D",
+                "text_color": "#ea0d0d",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
