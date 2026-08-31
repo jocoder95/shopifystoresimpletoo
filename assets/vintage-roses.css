@@ -20,7 +20,7 @@
 
 .vintage-roses__hero {
   position: relative;
-  min-height: 600px;
+  min-height: 300px;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
