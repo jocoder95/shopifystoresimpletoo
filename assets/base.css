@@ -15,7 +15,7 @@ body {
 :root {
   --hover-shadow-color: var(--color-shadow);
   --hover-transition-duration: 0.25s;
-  --hover-transition-timing: ease-out;
+  --hover-transition-timing: ease-in;
   --surface-transition-duration: 0.3s;
   --surface-transition-timing: var(--ease-out-quad);
   --submenu-animation-speed: 360ms;

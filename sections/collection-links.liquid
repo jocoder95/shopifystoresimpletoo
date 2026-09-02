@@ -195,6 +195,38 @@
       }
     }
   }
+
+
+.collection-links__images
+slideshow-slide[aria-hidden='false']
+.collection-links__image {
+  animation: collection-image-blur-zoom 1.0s
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes collection-image-blur-zoom {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+    filter: blur(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collection-links__images
+  slideshow-slide[aria-hidden='false']
+  .collection-links__image {
+    animation: none;
+  }
+}
+
+
 {% endstylesheet %}
 
 {% schema %}
