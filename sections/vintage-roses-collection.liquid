@@ -116,31 +116,8 @@
                 {{ product.price | money }}
               </p>
 
-              {% for option in product.options_with_values %}
-  {% assign option_name = option.name | downcase %}
-
-  {% if option_name contains 'size' %}
-    <div class="vintage-roses__sizes">
-
-      <span class="vintage-roses__sizes-label">
-        Sizes Available
-      </span>
-
-      <div class="vintage-roses__size-list">
-        {% for value in option.values %}
-          {% if value.available %}
-            <span class="vintage-roses__size">
-              {{ value }}
-            </span>
-          {% endif %}
-        {% endfor %}
-      </div>
-
-    </div>
-
-    {% break %}
-  {% endif %}
-{% endfor %}
+              
+             {% render 'product-available-sizes', product: product %}
 
             </div>
 

@@ -56,60 +56,6 @@
 }
 
 
-/* Available sizes */
-
-.vintage-roses__sizes {
-  display: grid;
-  grid-template-rows: 0fr;
-  margin-top: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition:
-    grid-template-rows 0.4s ease,
-    opacity 0.3s ease,
-    margin-top 0.4s ease;
-}
-
-
-.vintage-roses__sizes > * {
-  min-height: 0;
-  overflow: hidden;
-}
-
-
-.vintage-roses__product:hover .vintage-roses__sizes {
-  grid-template-rows: 1fr;
-  margin-top: 16px;
-  opacity: 1;
-}
-
-.vintage-roses__sizes-label {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 14px;
-}
-
-.vintage-roses__size-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 10px auto 0;
-}
-
-.vintage-roses__size {
-  display: inline-flex;
-  min-width: 48px;
-  min-height: 40px;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 12px;
-  border: 1px solid #d8d8d8;
-  border-radius: 999px;
-  background: white;
-  color: #222;
-  font-size: 14px;
-}
-
 
 /* --------------------------------
    HERO

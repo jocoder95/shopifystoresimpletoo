@@ -1,0 +1,42 @@
+{% comment %}
+  Reusable available sizes snippet.
+
+  Usage:
+  {% render 'product-available-sizes', product: product %}
+{% endcomment %}
+
+{% if product != blank %}
+  {% for option in product.options_with_values %}
+    {% assign option_name = option.name | downcase %}
+
+    {% if option_name contains 'size' %}
+      {% capture available_sizes %}
+        {% for value in option.values %}
+          {% if value.available %}
+            <span class="product-sizes__size">
+              {{ value | escape }}
+            </span>
+          {% endif %}
+        {% endfor %}
+      {% endcapture %}
+
+      {% assign available_sizes = available_sizes | strip %}
+
+      {% if available_sizes != blank %}
+        <div class="product-sizes">
+          <div class="product-sizes__content">
+            <span class="product-sizes__label">
+              Sizes Available
+            </span>
+
+            <div class="product-sizes__list">
+              {{ available_sizes }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}

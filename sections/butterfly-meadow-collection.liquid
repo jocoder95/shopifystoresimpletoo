@@ -107,6 +107,9 @@
                 {{ product.price | money }}
               </p>
 
+                {% render 'product-available-sizes', product: product %}
+
+
             </div>
 
           </a>
