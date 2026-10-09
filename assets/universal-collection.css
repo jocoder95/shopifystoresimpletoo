@@ -42,6 +42,14 @@ img.universal-collection__hero-image {
   display: block;
 }
 
+.universal-collection__product-image,
+.vintage-roses__product-image,
+.butterfly-meadow__product-image,
+.product-grid-container .card-gallery {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 /* Place overlay on the HERO, not on an <img> element. */
 .universal-collection__hero::after {
   content: "";
@@ -213,4 +221,17 @@ img.universal-collection__hero-image {
   .universal-collection__product-image img {
     transition: none;
   }
+}
+
+
+
+/* GLOBAL PRODUCT IMAGE ROUNDED CORNERS */
+
+product-card .card-gallery,
+.product-card .card-gallery,
+.universal-collection__product-image,
+.vintage-roses__product-image,
+.butterfly-meadow__product-image {
+  border-radius: 12px;
+  overflow: hidden;
 }

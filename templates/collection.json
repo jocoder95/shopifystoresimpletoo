@@ -10,6 +10,7 @@
   "sections": {
     "section": {
       "type": "section",
+      "disabled": true,
       "blocks": {
         "text_tqQTNE": {
           "type": "text",
