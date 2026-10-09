@@ -1,4 +1,4 @@
-
+{{ 'universal-collection.css' | asset_url | stylesheet_tag }}
 
 <script
   src="{{ 'results-list.js' | asset_url }}"
@@ -34,6 +34,37 @@
 <div
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
 ></div>
+
+
+<div class="universal-collection__hero">
+  {% if collection.image %}
+    {{
+      collection.image
+      | image_url: width: 2000
+      | image_tag:
+        loading: 'eager',
+        class: 'universal-collection__hero-image'
+    }}
+  {% endif %}
+
+  <div class="universal-collection__hero-content">
+    <p class="universal-collection__eyebrow">
+      COLLECTION
+    </p>
+
+    <h1 class="universal-collection__title">
+      {{ collection.title }}
+    </h1>
+
+    {% if collection.description != blank %}
+      <div class="universal-collection__description">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+
 {% # theme-check-disable-next-line UnknownFilter %}
 <collection-component view-event-payload="{{ collection | standard_event_data: 'view' | escape }}">
   <results-list

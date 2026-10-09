@@ -18,13 +18,13 @@
 }
 
 /* Show sizes when hovering over a product card */
-.vintage-roses__product:hover .product-sizes,
+/* .vintage-roses__product:hover .product-sizes,
 .butterfly-meadow__product:hover .product-sizes,
 .product-card:hover .product-sizes {
   grid-template-rows: 1fr;
   margin-top: 16px;
   opacity: 1;
-}
+} */
 
 .product-sizes__label {
   display: block;
@@ -51,4 +51,13 @@
   background: white;
   color: #222;
   font-size: 14px;
+}
+
+body:has(.universal-collection__hero)
+.product-card:hover .product-sizes,
+body:has(.universal-collection__hero)
+.product-card:focus-within .product-sizes {
+  grid-template-rows: 1fr;
+  margin-top: 16px;
+  opacity: 1;
 }

@@ -114,6 +114,11 @@
     "
   >
     {{ children }}
+
+     {% if product_view_context == 'collection' and product != blank %}
+      {% render 'product-available-sizes', product: product %}
+    {% endif %}
+    
   </div>
 </product-card>
 
