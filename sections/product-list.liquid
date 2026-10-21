@@ -1,7 +1,16 @@
-
-
+{% comment %}
+  Merchant-selected product collection with configurable cards and layouts.
+  Optional grid pagination makes the entire collection available on the homepage.
+  @example
+  Select the All collection, choose Grid, and enable Pagination.
+{% endcomment %}
 {% liquid
   assign max_items = section.settings.max_products
+  assign pagination_enabled = false
+  if section.settings.enable_pagination and section.settings.layout_type == 'grid'
+    assign pagination_enabled = true
+  endif
+  assign products_anchor = 'shopify-section-' | append: section.id
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
   endif
@@ -19,7 +28,7 @@
     section-resource-list
     spacing-style
     gap-style
-    scroll-right
+    {% unless pagination_enabled %}scroll-right{% endunless %}
   "
   style="
     {% render 'spacing-style', settings: section.settings %}
@@ -48,8 +57,23 @@
           {% unless forloop.last %}
             <!--@list/split-->
           {% endunless %}
+        {% else %}
+          {% if pagination_enabled %}
+            {% render 'product-card-styles' %}
+            {% render 'product-card-gallery-zoom-details-styles' %}
+            <p>{{ 'content.no_products_found' | t }}</p>
+          {% endif %}
         {% endfor %}
+        {% if pagination_enabled %}
+          {% capture pagination_controls %}
+            {% render 'pagination-controls', paginate: paginate, anchor: products_anchor %}
+          {% endcapture %}
+        {% endif %}
       {% endpaginate %}
+    {% elsif pagination_enabled and request.design_mode == false %}
+      {% render 'product-card-styles' %}
+      {% render 'product-card-gallery-zoom-details-styles' %}
+      <p>{{ 'content.no_products_found' | t }}</p>
     {% else %}
       {% for i in (1..max_items) %}
         <div
@@ -78,6 +102,10 @@
     content_type: 'products',
     test_id: 'resource-list-grid'
   %}
+
+  {% if pagination_enabled %}
+    {{ pagination_controls }}
+  {% endif %}
 
   <div
     class="section-resource-list__content"
@@ -130,6 +158,13 @@
         }
       ],
       "default": "grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_pagination",
+      "label": "t:settings.pagination",
+      "default": false,
+      "visible_if": "{{ section.settings.layout_type == 'grid' }}"
     },
     {
       "type": "checkbox",

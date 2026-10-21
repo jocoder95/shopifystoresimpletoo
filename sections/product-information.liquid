@@ -1,5 +1,21 @@
+{% comment %}
+  Product media, options, purchase controls and sticky add-to-cart.
+  @example
+  Set Buttons > Style to Rounded for softer product controls.
+{% endcomment %}
+{% if section.settings.control_shape == 'rounded' %}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      --variant-picker-button-radius: var(--style-border-radius-lg);
+      --style-border-radius-buttons-primary: var(--style-border-radius-lg);
+      --style-border-radius-buttons-secondary: var(--style-border-radius-lg);
+    }
 
-
+    #shopify-section-{{ section.id }} .shopify-payment-button__button--unbranded {
+      border-radius: var(--style-border-radius-buttons-primary);
+    }
+  {% endstyle %}
+{% endif %}
 <script type="application/ld+json">
   {{ closest.product | structured_data }}
 </script>
@@ -453,6 +469,26 @@
       "id": "background_color",
       "label": "t:settings.background_color",
       "placeholder": "t:settings.default"
+    },
+    {
+      "type": "header",
+      "content": "t:content.buttons"
+    },
+    {
+      "type": "select",
+      "id": "control_shape",
+      "label": "t:settings.style",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:options.default"
+        },
+        {
+          "value": "rounded",
+          "label": "t:options.rounded"
+        }
+      ],
+      "default": "default"
     },
     {
       "type": "header",

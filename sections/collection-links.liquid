@@ -1,5 +1,8 @@
-
-
+{% comment %}
+  Collection links with an optional editable heading and spotlight images.
+  @example
+  Set Heading to Our collections in the homepage Collection links section.
+{% endcomment %}
 {% liquid
   assign collection_list = section.settings.collection_list
 
@@ -45,6 +48,11 @@
         <image href="{{ section.settings.floral_corner_image | image_url: width: 1672 }}" width="1672" height="941" />
       </svg>
     </div>
+  {% endif %}
+  {% if section.settings.heading != blank %}
+    <h2 class="collection-links__heading h4" style="text-align: {{ section.settings.alignment }};">
+      {{ section.settings.heading | escape }}
+    </h2>
   {% endif %}
   <collection-links-component
     layout="{{ section.settings.layout }}"
@@ -113,6 +121,11 @@
 </div>
 
 {% stylesheet %}
+  .collection-links__heading {
+    margin-block: 0 var(--gap-xl);
+    overflow-wrap: anywhere;
+  }
+
   .collection-links__florals {
     position: absolute;
     inset: 0;
@@ -283,6 +296,11 @@ slideshow-slide[aria-hidden='false']
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:settings.heading"
+    },
     {
       "type": "collection_list",
       "id": "collection_list",

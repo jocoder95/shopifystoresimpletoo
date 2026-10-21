@@ -39,6 +39,11 @@
   }
 
   .quick-add-modal {
+    /* Product content is moved outside its section when opened in Quick Add. */
+    --variant-picker-button-radius: var(--style-border-radius-lg);
+    --style-border-radius-buttons-primary: var(--style-border-radius-lg);
+    --style-border-radius-buttons-secondary: var(--style-border-radius-lg);
+
     padding: 0;
     border: var(--style-border-popover);
     overflow: hidden;
@@ -53,6 +58,10 @@
       overflow: clip;
       height: fit-content;
     }
+  }
+
+  .quick-add-modal .shopify-payment-button__button--unbranded {
+    border-radius: var(--style-border-radius-buttons-primary);
   }
 
   .quick-add-modal[open] {

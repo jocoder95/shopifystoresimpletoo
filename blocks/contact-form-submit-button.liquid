@@ -4,7 +4,13 @@
 <button
   type="submit"
   class="button submit-button size-style {{ block_settings.style_class }} {{ block_settings.style_class }}--{{ block.id }}"
-  style="{% render 'size-style', settings: block_settings %}"
+  style="
+    {% render 'size-style', settings: block_settings %}
+    {% if block_settings.corner_style == 'rounded' %}
+      --style-border-radius-buttons-primary: var(--style-border-radius-lg);
+      --style-border-radius-buttons-secondary: var(--style-border-radius-lg);
+    {% endif %}
+  "
   {{ block.shopify_attributes }}
 >
   {{ block_settings.label }}
@@ -21,6 +27,22 @@
   "name": "t:names.submit_button",
   "tag": null,
   "settings": [
+    {
+      "type": "select",
+      "id": "corner_style",
+      "label": "t:settings.border_radius",
+      "options": [
+        {
+          "value": "default",
+          "label": "t:options.default"
+        },
+        {
+          "value": "rounded",
+          "label": "t:options.rounded"
+        }
+      ],
+      "default": "default"
+    },
     {
       "type": "text",
       "id": "label",
