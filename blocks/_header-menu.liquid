@@ -45,6 +45,7 @@
             role="list"
           >
             {% for link in block_settings.menu.links %}
+              {%- capture navigation_title -%}{%- render 'header-link-title', link: link, menu: block_settings.menu -%}{%- endcapture -%}
               <li>
                 <a
                   href="{{ link.url }}"
@@ -54,7 +55,7 @@
                     aria-current="page"
                   {% endif %}
                 >
-                  {{- link.title -}}
+                  {{- navigation_title | escape -}}
                 </a>
               </li>
             {% endfor %}
@@ -93,6 +94,7 @@
 
     {% capture children %}
       {% for link in block_settings.menu.links %}
+              {%- capture navigation_title -%}{%- render 'header-link-title', link: link, menu: block_settings.menu -%}{%- endcapture -%}
         <li
           class="menu-list__list-item"
           on:blur="/deactivate"
@@ -111,7 +113,7 @@
             {% endif %}
             ref="menuitem"
           >
-            <span class="menu-list__link-title">{{- link.title -}}</span>
+            <span class="menu-list__link-title">{{- navigation_title | escape -}}</span>
           </a>
           {%- if link.links != blank -%}
             <button
@@ -122,7 +124,7 @@
               ref="disclosure[]"
               on:click="/toggle"
             >
-              <span class="visually-hidden">{{ 'accessibility.show_submenu' | t: title: link.title }}</span>
+              <span class="visually-hidden">{{ 'accessibility.show_submenu' | t: title: navigation_title }}</span>
               <svg
                 class="menu-list__disclosure-icon"
                 aria-hidden="true"

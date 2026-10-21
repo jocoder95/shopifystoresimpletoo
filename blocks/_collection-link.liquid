@@ -60,7 +60,7 @@
 {% else %}
   <a
     href="{{ closest.collection.url }}"
-    class="collection-links__link"
+    class="collection-links__link{% if closest.collection.handle == 'butterfly-meadow' %} collection-links__link--butterflies{% elsif closest.collection.handle == 'duck-pond' %} collection-links__link--ducks{% elsif closest.collection.handle == 'raspberry-garden' %} collection-links__link--raspberries{% elsif closest.collection.handle == 'bunnies' %} collection-links__link--bunnies{% elsif closest.collection.handle == 'vintage-roses-1' or closest.collection.handle == 'vintage-roses' %} collection-links__link--petals{% endif %}"
     ref="links[]"
     on:pointerenter="/select/{{ index }}"
     on:focus="/select/{{ index }}"
@@ -75,6 +75,18 @@
     {{ block.shopify_attributes }}
   >
     {{ title_block }}
+
+    {% if closest.collection.handle == 'butterfly-meadow' %}
+      {% render 'collection-butterflies' %}
+    {% elsif closest.collection.handle == 'duck-pond' %}
+      {% render 'collection-ducks' %}
+    {% elsif closest.collection.handle == 'raspberry-garden' %}
+      {% render 'collection-raspberries' %}
+    {% elsif closest.collection.handle == 'bunnies' %}
+      {% render 'collection-bunnies' %}
+    {% elsif closest.collection.handle == 'vintage-roses-1' or closest.collection.handle == 'vintage-roses' %}
+      {% render 'collection-rose-petals' %}
+    {% endif %}
 
     {% if section.settings.layout == 'text' %}
       <div

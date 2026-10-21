@@ -1,0 +1,94 @@
+{% doc %}
+  Four decorative raspberries that bounce around the Raspberry Garden link on
+  hover or keyboard focus. Berry artwork colors are independent of UI colors.
+  @example
+  <!-- Render inside a collection-links__link--raspberries anchor. -->
+  {% render 'collection-raspberries' %}
+{% enddoc %}
+
+<span class="collection-raspberries" aria-hidden="true">
+  {% for index in (1..4) %}
+    <span class="collection-raspberries__hop" style="--berry-position: {{ index | times: 18 }}%; --berry-delay: -{{ index | times: 0.23 }}s;">
+      <svg class="collection-raspberries__berry" viewBox="0 0 32 38" width="32" height="38" aria-hidden="true" focusable="false">
+        <path d="M16 11C8 8 3 14 5 21c2 7 6 13 11 15 5-2 9-8 11-15 2-7-3-13-11-10Z" fill="#B83559" />
+        <g fill="#DA5378" stroke="#B83559" stroke-width="0.7">
+          <circle cx="11" cy="15" r="4.5" />
+          <circle cx="21" cy="15" r="4.5" />
+          <circle cx="16" cy="13" r="4.5" />
+          <circle cx="8" cy="21" r="4" />
+          <circle cx="16" cy="21" r="4.5" />
+          <circle cx="24" cy="21" r="4" />
+          <circle cx="12" cy="27" r="4" />
+          <circle cx="20" cy="27" r="4" />
+          <circle cx="16" cy="32" r="3.5" />
+        </g>
+        <path d="M16 12 8 8l6-1-1-5 5 5 6-2-3 5 5 2-8 1Z" fill="#7EAA68" />
+        <path d="M16 10c-1-4 0-6 2-8" fill="none" stroke="#5C824E" stroke-width="1.5" stroke-linecap="round" />
+        <circle cx="12" cy="14" r="1.2" fill="#F5A7BC" />
+      </svg>
+    </span>
+  {% endfor %}
+</span>
+
+{% stylesheet %}
+  .collection-links__link--raspberries {
+    position: relative;
+  }
+
+  .collection-raspberries {
+    position: absolute;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+  }
+
+  .collection-links__link--raspberries:focus-visible .collection-raspberries {
+    display: block;
+  }
+
+  @media (hover: hover) {
+    .collection-links__link--raspberries:hover .collection-raspberries {
+      display: block;
+    }
+  }
+
+  .collection-raspberries__hop {
+    position: absolute;
+    inset-block-start: calc(100% - 6px);
+    inset-inline-start: var(--berry-position);
+    inline-size: var(--font-size--xl);
+    animation: collection-raspberry-hop 2.8s var(--berry-delay) ease-in-out infinite alternate;
+  }
+
+  .collection-raspberries__berry {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    overflow: visible;
+    transform-origin: 50% 100%;
+    animation: collection-raspberry-bounce 1.2s var(--berry-delay) ease-in-out infinite;
+  }
+
+  @keyframes collection-raspberry-hop {
+    from { transform: translateX(-6px); }
+    to { transform: translateX(8px); }
+  }
+
+  @keyframes collection-raspberry-bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1.1, 0.9); }
+    40% { transform: translateY(-32px) rotate(-14deg) scale(0.95, 1.05); }
+    70% { transform: translateY(-8px) rotate(12deg) scale(1); }
+    85% { transform: translateY(0) rotate(0deg) scale(1.15, 0.85); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .collection-links__link--raspberries:is(:hover, :focus-visible) .collection-raspberries {
+      display: none;
+    }
+
+    .collection-raspberries__hop,
+    .collection-raspberries__berry {
+      animation: none;
+    }
+  }
+{% endstylesheet %}

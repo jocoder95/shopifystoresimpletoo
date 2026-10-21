@@ -201,7 +201,7 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap": 32,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -241,7 +241,7 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap": 24,
                 "width": "custom",
                 "custom_width": 50,
                 "width_mobile": "fill",
@@ -351,7 +351,7 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap": 20,
                 "width": "custom",
                 "custom_width": 30,
                 "width_mobile": "fill",
@@ -457,10 +457,11 @@
       ],
       "settings": {
         "section_width": "page-width",
-        "gap": 0,
+        "gap": 32,
+        "falling_flowers_image": "shopify://shop_images/logo_background_white_hd.png",
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 64,
-        "padding-block-end": 0
+        "padding-block-start": 80,
+        "padding-block-end": 48
       }
     },
     "logo_RVGHD7": {
@@ -540,8 +541,8 @@
         "background_color": "{{ settings.color_palette.background }}",
         "divider_thickness": 1,
         "divider_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 12,
-        "padding-block-end": 16
+        "padding-block-start": 24,
+        "padding-block-end": 24
       }
     }
   },

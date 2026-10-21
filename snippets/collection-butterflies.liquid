@@ -1,0 +1,94 @@
+{% doc %}
+  Decorative butterflies that flutter around the Butterfly Meadow collection link
+  on hover or keyboard focus. Colors follow the surrounding section palette.
+  @example
+  <!-- Render inside a collection-links__link--butterflies anchor. -->
+  {% render 'collection-butterflies' %}
+{% enddoc %}
+
+<span class="collection-butterflies" aria-hidden="true">
+  {% for index in (1..4) %}
+    <span class="collection-butterflies__flight" style="--butterfly-position: {{ index | times: 20 }}%; --butterfly-delay: -{{ index | times: 0.55 }}s;">
+      <svg class="collection-butterflies__butterfly" viewBox="0 0 40 32" width="40" height="32" aria-hidden="true" focusable="false">
+        <g class="collection-butterflies__wings" fill="currentColor">
+          <path d="M20 16C12-3 1 0 3 11c1 5 7 8 13 9C5 14 5 29 13 28c4-1 6-5 7-12Z" />
+          <path d="M20 16C28-3 39 0 37 11c-1 5-7 8-13 9 11-6 11 9 3 8-4-1-6-5-7-12Z" />
+        </g>
+        <path d="M20 11v13m0-12-4-6m4 6 4-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </span>
+  {% endfor %}
+</span>
+
+{% stylesheet %}
+  .collection-links__link--butterflies {
+    position: relative;
+  }
+
+  .collection-butterflies {
+    position: absolute;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+    color: color-mix(in srgb, var(--color-foreground) 65%, var(--color-background));
+  }
+
+  .collection-links__link--butterflies:focus-visible .collection-butterflies {
+    display: block;
+  }
+
+  @media (hover: hover) {
+    .collection-links__link--butterflies:hover .collection-butterflies {
+      display: block;
+    }
+  }
+
+  .collection-butterflies__flight {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: var(--butterfly-position);
+    inline-size: var(--font-size--2xl);
+    animation: collection-butterfly-flight 3.2s var(--butterfly-delay) ease-in-out infinite;
+  }
+
+  .collection-butterflies__flight:nth-child(even) {
+    animation-direction: reverse;
+    inline-size: var(--font-size--xl);
+  }
+
+  .collection-butterflies__butterfly {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    overflow: visible;
+  }
+
+  .collection-butterflies__wings {
+    transform-origin: 50% 50%;
+    animation: collection-butterfly-flap 180ms ease-in-out infinite alternate;
+  }
+
+  @keyframes collection-butterfly-flight {
+    0%, 100% { transform: translate(-12px, 8px) rotate(-18deg) scale(0.6); opacity: 0; }
+    15% { opacity: 1; }
+    30% { transform: translate(-24px, -35px) rotate(15deg) scale(1); }
+    55% { transform: translate(10px, -60px) rotate(-12deg) scale(0.9); }
+    80% { transform: translate(24px, -12px) rotate(22deg) scale(1); opacity: 1; }
+  }
+
+  @keyframes collection-butterfly-flap {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0.3); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .collection-links__link--butterflies:is(:hover, :focus-visible) .collection-butterflies {
+      display: none;
+    }
+
+    .collection-butterflies__flight,
+    .collection-butterflies__wings {
+      animation: none;
+    }
+  }
+{% endstylesheet %}

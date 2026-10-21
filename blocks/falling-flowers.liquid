@@ -1,0 +1,22 @@
+{% doc %}
+  Decorative windblown flowers for a section background. Crops match the
+  1672 × 941 homepage hero artwork, without repeating its central logo.
+  @example
+  <!-- Add this block before text inside a section; select the hero artwork. -->
+{% enddoc %}
+
+{% render 'falling-flowers', image: block.settings.image, attributes: block.shopify_attributes %}
+
+{% schema %}
+{
+  "name": "t:names.animations",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    }
+  ]
+}
+{% endschema %}

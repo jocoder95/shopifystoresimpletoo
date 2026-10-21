@@ -1,5 +1,8 @@
-
-
+{% comment %}
+  Footer navigation and newsletter composition with an optional falling-flower background.
+  @example
+  Select the homepage hero artwork under Background image to enable the flowers.
+{% endcomment %}
 {% liquid
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
@@ -10,8 +13,11 @@
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
 ></div>
 <div
-  class="section section--{{ section.settings.section_width }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  class="section section--{{ section.settings.section_width }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.settings.falling_flowers_image != blank %} footer-section--flowers{% endif %}"
 >
+  {% if section.settings.falling_flowers_image != blank %}
+    {% render 'falling-flowers', image: section.settings.falling_flowers_image %}
+  {% endif %}
   {% liquid
     assign total_blocks = section.blocks.size
 
@@ -55,6 +61,14 @@
 </div>
 
 {% stylesheet %}
+  .footer-section--flowers {
+    isolation: isolate;
+  }
+
+  .footer-section--flowers > .floral-background {
+    grid-column: 1 / -1;
+  }
+
   .footer-content {
     contain: content;
     content-visibility: auto;
@@ -182,6 +196,11 @@
       "id": "background_color",
       "label": "t:settings.background_color",
       "default": "{{ settings.color_palette.foreground }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "falling_flowers_image",
+      "label": "t:content.background_image"
     },
     {
       "type": "header",

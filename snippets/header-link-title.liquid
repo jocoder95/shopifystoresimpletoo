@@ -1,0 +1,15 @@
+{% doc %}
+  Renders the main navigation's Collections label as Products.
+  @param {object} link - The top-level navigation link.
+  @param {object} menu - The merchant-selected navigation menu.
+  @example
+  {% render 'header-link-title', link: link, menu: block.settings.menu %}
+{% enddoc %}
+{%- liquid
+  assign normalized_title = link.title | downcase
+  if menu.handle == 'main-menu' and normalized_title == 'collections'
+    echo 'Products'
+  else
+    echo link.title
+  endif
+-%}

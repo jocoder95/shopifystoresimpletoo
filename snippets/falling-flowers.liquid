@@ -1,0 +1,105 @@
+{% doc %}
+  Falling hero flowers shared by the introduction block and footer. Crops match
+  the 1672 × 941 hero artwork and exclude the central logo.
+  @param {image} image - The hero flower artwork selected by the merchant.
+  @param {string} [attributes] - Optional theme editor block attributes.
+  @example
+  {% render 'falling-flowers', image: section.settings.falling_flowers_image %}
+{% enddoc %}
+
+{% if image != blank %}
+  <div class="floral-background" {{ attributes }}>
+    <div class="floral-background__flowers" aria-hidden="true">
+      {% for index in (1..10) %}
+        {% liquid
+          assign flower_type = index | modulo: 4
+          case flower_type
+            when 0
+              assign crop = '815 70 140 135'
+            when 1
+              assign crop = '1125 50 120 120'
+            when 2
+              assign crop = '25 45 195 195'
+            when 3
+              assign crop = '975 170 120 115'
+          endcase
+          assign position = index | times: 10 | minus: 6
+          assign delay = index | times: -2.7
+          assign duration = index | modulo: 4 | times: 3 | plus: 18
+          assign size = index | modulo: 3 | times: 16 | plus: 40
+        %}
+        <span
+          class="floral-background__fall"
+          style="--flower-position: {{ position }}%; --flower-delay: {{ delay }}s; --flower-duration: {{ duration }}s; --flower-size: {{ size }}px;"
+        >
+          <svg class="floral-background__flower" viewBox="{{ crop }}" width="80" height="80" focusable="false">
+            <image href="{{ image | image_url: width: 1672 }}" width="1672" height="941" />
+          </svg>
+        </span>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .section-content-wrapper:has(> .floral-background) {
+    isolation: isolate;
+    overflow: clip;
+  }
+
+  .floral-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .floral-background__flowers {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.45;
+    mix-blend-mode: multiply;
+    mask-image: linear-gradient(90deg, #000, #0008 25%, #0003 50%, #0008 75%, #000);
+  }
+
+  .floral-background__fall {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: var(--flower-position);
+    block-size: 100%;
+    inline-size: var(--flower-size);
+    animation: floral-fall var(--flower-duration) var(--flower-delay) linear infinite;
+  }
+
+  .floral-background__flower {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 1;
+    animation: floral-sway 7s var(--flower-delay) ease-in-out infinite alternate;
+  }
+
+  @keyframes floral-fall {
+    from { transform: translateY(-120px); }
+    to { transform: translateY(calc(100% + 120px)); }
+  }
+
+  @keyframes floral-sway {
+    from { transform: translateX(-22px) rotate(-24deg); }
+    to { transform: translateX(30px) rotate(32deg); }
+  }
+
+  @media screen and (max-width: 749px) {
+    .floral-background__fall:nth-child(even) { display: none; }
+    .floral-background__flower { inline-size: 75%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floral-background__fall,
+    .floral-background__flower { animation: none; }
+    .floral-background__fall { inset-block-start: 15%; }
+    .floral-background__fall:nth-child(odd) { inset-block-start: 65%; }
+  }
+{% endstylesheet %}
+

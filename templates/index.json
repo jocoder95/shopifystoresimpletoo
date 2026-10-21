@@ -75,6 +75,53 @@
         "padding-block-end": 0
       }
     },
+    "lilsistas_intro": {
+      "type": "section",
+      "name": "Meet lilsistas",
+      "blocks": {
+        "intro_flowers": {
+          "type": "falling-flowers",
+          "settings": {
+            "image": "shopify://shop_images/logo_background_white_hd.png"
+          }
+        },
+        "intro_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Meet lilsistas: clothing for your little one, from their first days to 18–24 months.</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h3",
+            "text_color": ""
+          }
+        },
+        "intro_description": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Find a favourite for the moments that matter.</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": ["intro_flowers", "intro_heading", "intro_description"],
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
     "collection_links_Ut4aMz": {
       "type": "collection-links",
       "blocks": {
@@ -104,7 +151,7 @@
               "settings": {
                 "height": "medium",
                 "ratio": "portrait",
-                "border_radius": 0
+                "border_radius": 24
               },
               "blocks": {}
             }
@@ -125,9 +172,10 @@
         "section_width": "page-width",
         "alignment": "left",
         "image_position": "right",
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 82,
-        "padding-block-end": 82
+        "background_color": "#F9E8E7",
+        "floral_corner_image": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     },
     "featured_product_mTUbKC": {
@@ -1007,6 +1055,7 @@
   },
   "order": [
     "hero_iyt6zg",
+    "lilsistas_intro",
     "collection_links_Ut4aMz",
     "featured_product_mTUbKC",
     "product_list_UwRqN4",

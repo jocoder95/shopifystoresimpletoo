@@ -1,0 +1,86 @@
+{% doc %}
+  Five decorative rose petals that float around the Vintage Roses link on hover
+  or keyboard focus. Petal colors follow the surrounding section palette.
+  @example
+  <!-- Render inside a collection-links__link--petals anchor. -->
+  {% render 'collection-rose-petals' %}
+{% enddoc %}
+
+<span class="collection-rose-petals" aria-hidden="true">
+  {% for index in (1..5) %}
+    <span class="collection-rose-petals__float" style="--petal-position: {{ index | times: 16 }}%; --petal-delay: -{{ index | times: 0.63 }}s;">
+      <svg class="collection-rose-petals__petal" viewBox="0 0 24 30" width="24" height="30" aria-hidden="true" focusable="false">
+        <path d="M20 3C8-2-2 6 3 18c2 5 6 8 8 11 0-6 12-10 12-19 0-3-1-5-3-7Z" fill="currentColor" />
+        <path d="M19 5C9 5 5 11 9 21c-1-8 3-13 10-16Z" fill="var(--color-background)" opacity="0.4" />
+      </svg>
+    </span>
+  {% endfor %}
+</span>
+
+{% stylesheet %}
+  .collection-links__link--petals {
+    position: relative;
+  }
+
+  .collection-rose-petals {
+    position: absolute;
+    inset: 0;
+    display: none;
+    pointer-events: none;
+    color: color-mix(in srgb, var(--color-foreground) 60%, var(--color-background));
+  }
+
+  .collection-links__link--petals:focus-visible .collection-rose-petals {
+    display: block;
+  }
+
+  @media (hover: hover) {
+    .collection-links__link--petals:hover .collection-rose-petals {
+      display: block;
+    }
+  }
+
+  .collection-rose-petals__float {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: var(--petal-position);
+    inline-size: var(--font-size--lg);
+    animation: collection-rose-petal-float 3.8s var(--petal-delay) ease-in-out infinite;
+  }
+
+  .collection-rose-petals__float:nth-child(even) {
+    inline-size: var(--font-size--sm);
+    animation-duration: 4.6s;
+  }
+
+  .collection-rose-petals__petal {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    animation: collection-rose-petal-turn 1.8s var(--petal-delay) ease-in-out infinite alternate;
+  }
+
+  @keyframes collection-rose-petal-float {
+    0% { transform: translate(-12px, -34px); opacity: 0; }
+    18% { opacity: 0.9; }
+    40% { transform: translate(15px, -20px); }
+    70% { transform: translate(-8px, 4px); opacity: 0.8; }
+    100% { transform: translate(18px, 24px); opacity: 0; }
+  }
+
+  @keyframes collection-rose-petal-turn {
+    from { transform: rotate(-30deg) scaleX(0.7); }
+    to { transform: rotate(45deg) scaleX(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .collection-links__link--petals:is(:hover, :focus-visible) .collection-rose-petals {
+      display: none;
+    }
+
+    .collection-rose-petals__float,
+    .collection-rose-petals__petal {
+      animation: none;
+    }
+  }
+{% endstylesheet %}

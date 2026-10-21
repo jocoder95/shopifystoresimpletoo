@@ -36,6 +36,16 @@
   style="{% render 'spacing-style', settings: section.settings %}"
   data-testid="collection-links-{{ section.id }}"
 >
+  {% if section.settings.floral_corner_image != blank %}
+    <div class="collection-links__florals force-full-width" aria-hidden="true">
+      <svg class="collection-links__floral collection-links__floral--start" viewBox="815 70 140 135" width="140" height="135" focusable="false">
+        <image href="{{ section.settings.floral_corner_image | image_url: width: 1672 }}" width="1672" height="941" />
+      </svg>
+      <svg class="collection-links__floral collection-links__floral--end" viewBox="975 170 120 115" width="120" height="115" focusable="false">
+        <image href="{{ section.settings.floral_corner_image | image_url: width: 1672 }}" width="1672" height="941" />
+      </svg>
+    </div>
+  {% endif %}
   <collection-links-component
     layout="{{ section.settings.layout }}"
     alignment="{{ section.settings.alignment }}"
@@ -103,6 +113,43 @@
 </div>
 
 {% stylesheet %}
+  .collection-links__florals {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  .collection-links__floral {
+    position: absolute;
+    inline-size: clamp(64px, 9vw, 128px);
+    block-size: auto;
+  }
+
+  .collection-links__floral--start {
+    inset-block-start: var(--padding-sm);
+    inset-inline-start: var(--padding-xs);
+    transform: rotate(-18deg);
+  }
+
+  .collection-links__floral--end {
+    inset-block-end: var(--padding-sm);
+    inset-inline-end: var(--padding-xs);
+    transform: rotate(24deg);
+  }
+
+  .collection-links__florals + collection-links-component {
+    position: relative;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-links__florals {
+      opacity: 0.25;
+    }
+  }
+
   collection-links-component {
     --alignment: flex-start;
 
@@ -319,6 +366,11 @@ slideshow-slide[aria-hidden='false']
       "id": "background_color",
       "label": "t:settings.background_color",
       "placeholder": "t:settings.default"
+    },
+    {
+      "type": "image_picker",
+      "id": "floral_corner_image",
+      "label": "t:content.background_image"
     },
     {
       "type": "header",
